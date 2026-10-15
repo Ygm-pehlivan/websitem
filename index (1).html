@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yağmur Pehlivan: Management Information Systems student. Projects in AI, data science and software development.">
+<meta property="og:title" content="Yağmur Pehlivan">
+<meta property="og:description" content="Yağmur Pehlivan: Management Information Systems student. Projects in AI, data science and software development.">
+<title>Yağmur Pehlivan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one friendly centered column, a hand-drawn avatar beside the greeting, soft tinted chips, a floating dock for navigation. Light first, with a dark twin. */
+:root {
+  color-scheme: light;
+  --bg: #f6f9ff;
+  --surface: #ffffff;
+  --line: #dfe7f5;
+  --fg: #0f1b33;
+  --fg-soft: #3b4a68;
+  --muted: #66758f;
+  --accent: #2f6bff;
+  --accent-ink: #ffffff;
+  --accent-soft: #e4edff;
+  --mark: #ffd75e;
+  --shadow: 0 1px 2px rgba(15, 27, 51, 0.06), 0 8px 24px rgba(47, 107, 255, 0.08);
+  --avatar-bg: #cfe0ff;
+  --blue-bg: #e4edff;   --blue-fg: #1d4fd8;
+  --lilac-bg: #eee8ff;  --lilac-fg: #5a3fc4;
+  --mint-bg: #d9f5e8;   --mint-fg: #0d7a4c;
+  --peach-bg: #ffe8dc;  --peach-fg: #b2461b;
+  --sun-bg: #fff2c7;    --sun-fg: #7f5a00;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0b1220; --surface: #111b31; --line: #223152;
+    --fg: #eaf0fb; --fg-soft: #c5d0e6; --muted: #92a1bd;
+    --accent: #6ea1ff; --accent-ink: #07101f; --accent-soft: #16264a; --mark: #8a6a00;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --avatar-bg: #1d2e57;
+    --blue-bg: #16264a;  --blue-fg: #9bbcff;
+    --lilac-bg: #2a2252; --lilac-fg: #c8b7ff;
+    --mint-bg: #10302a;  --mint-fg: #72e2b4;
+    --peach-bg: #3b2319; --peach-fg: #ffad87;
+    --sun-bg: #392f10;   --sun-fg: #ffd970;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1220; --surface: #111b31; --line: #223152;
+  --fg: #eaf0fb; --fg-soft: #c5d0e6; --muted: #92a1bd;
+  --accent: #6ea1ff; --accent-ink: #07101f; --accent-soft: #16264a; --mark: #8a6a00;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --avatar-bg: #1d2e57;
+  --blue-bg: #16264a;  --blue-fg: #9bbcff;
+  --lilac-bg: #2a2252; --lilac-fg: #c8b7ff;
+  --mint-bg: #10302a;  --mint-fg: #72e2b4;
+  --peach-bg: #3b2319; --peach-fg: #ffad87;
+  --sun-bg: #392f10;   --sun-fg: #ffd970;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 16px/1.65 var(--font-body); -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap {
+  max-width: 720px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { padding-block: 56px 130px; }
+section { padding-block: 36px; }
+
+.chip {
+  display: inline-block; font: 500 0.78rem var(--font-mono); letter-spacing: 0.06em;
+  padding: 4px 12px; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
+}
+h2 {
+  font: 800 clamp(1.7rem, 5vw, 2.3rem)/1.12 var(--font-display);
+  letter-spacing: -0.02em; margin: 14px 0 18px; text-wrap: balance;
+}
+.sub { margin: 0 0 18px; color: var(--fg-soft); max-width: 60ch; }
+
+/* Motion: content is visible at rest; this only adds a soft entrance. */
+@keyframes rise { from { opacity: 0.25; transform: translateY(10px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+.fade { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+
+/* Hero */
+.hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 8px; }
+.hero .text { min-width: 0; flex: 1; }
+h1 {
+  font: 800 clamp(2.3rem, 8vw, 3.8rem)/1.04 var(--font-display);
+  letter-spacing: -0.03em; margin: 0 0 14px; text-wrap: balance;
+}
+.mark { background: linear-gradient(transparent 62%, var(--mark) 62% 92%, transparent 92%); padding-inline: 2px; }
+.tagline { margin: 0; font-size: 1.12rem; color: var(--fg-soft); max-width: 36ch; }
+.avatar-wrap {
+  flex: none; width: clamp(104px, 24vw, 148px); aspect-ratio: 1; border-radius: 50%;
+  border: 4px solid var(--surface); box-shadow: var(--shadow); overflow: hidden; background: var(--avatar-bg);
+}
+.avatar { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.pill {
+  font: 500 0.78rem var(--font-mono); padding: 4px 11px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line); color: var(--fg-soft);
+}
+
+.about p { margin: 0 0 1em; max-width: 64ch; color: var(--fg-soft); font-size: 1.04rem; }
+
+/* Timeline */
+.tl { list-style: none; margin: 0; padding: 0; }
+.tl-item { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 0 16px; padding-bottom: 30px; }
+.tl-item:not(:last-child)::before {
+  content: ""; position: absolute; left: 21px; top: 50px; bottom: 4px; width: 2px; background: var(--line);
+}
+.badge {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  font: 800 1rem var(--font-display); background: var(--blue-bg); color: var(--blue-fg);
+}
+.badge.b2 { background: var(--sun-bg); color: var(--sun-fg); }
+.badge.b3 { background: var(--mint-bg); color: var(--mint-fg); }
+.tl-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
+.tl h3 { font: 700 1.15rem var(--font-display); margin: 0; letter-spacing: -0.01em; }
+.when { font: 400 0.8rem var(--font-mono); color: var(--muted); }
+.role { margin: 0; color: var(--accent); font-size: 0.95rem; font-weight: 500; }
+.tl ul { margin: 10px 0 0; padding-left: 18px; color: var(--fg-soft); font-size: 0.97rem; }
+.tl li + li { margin-top: 6px; }
+
+/* Cards */
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow); padding: 22px; min-width: 0;
+}
+.edu h3 { font: 700 1.2rem var(--font-display); margin: 0; letter-spacing: -0.01em; }
+.edu .role { margin-top: 2px; }
+.gpa { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 14px; }
+.gpa b { font: 800 1.9rem var(--font-display); color: var(--accent); letter-spacing: -0.02em; }
+.gpa span { font: 500 0.78rem var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.edu p { margin: 12px 0 0; color: var(--fg-soft); font-size: 0.97rem; }
+
+/* Chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chips li { padding: 4px 12px; border-radius: 999px; font-size: 0.9rem; font-weight: 500; background: var(--blue-bg); color: var(--blue-fg); }
+.chips.lilac li { background: var(--lilac-bg); color: var(--lilac-fg); }
+.chips.mint li { background: var(--mint-bg); color: var(--mint-fg); }
+.chips.peach li { background: var(--peach-bg); color: var(--peach-fg); }
+.chips.sun li { background: var(--sun-bg); color: var(--sun-fg); }
+.edu .chips { margin-top: 14px; }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px 28px; }
+.group h3 { font: 500 0.76rem var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.project { padding: 0; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+.project:hover { transform: translateY(-3px); }
+.cover { height: 112px; display: grid; place-items: center; }
+.cover svg { width: 100%; height: 100%; display: block; }
+.cover.c1 { background: var(--sun-bg); color: var(--sun-fg); }
+.cover.c2 { background: var(--blue-bg); color: var(--blue-fg); }
+.cover.c3 { background: var(--lilac-bg); color: var(--lilac-fg); }
+.cover.c4 { background: var(--mint-bg); color: var(--mint-fg); }
+.p-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.kind { display: flex; justify-content: space-between; gap: 10px; font: 500 0.72rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.kind .status { color: var(--accent); }
+.project h3 { font: 700 1.12rem/1.25 var(--font-display); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.project p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: auto 0 0; padding: 6px 0 0; }
+.tags li { font: 400 0.74rem var(--font-mono); color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 6px; }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font: 400 0.76rem var(--font-mono); }
+.flow .node { padding: 3px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.flow .arrow { color: var(--accent); }
+.more { margin: 22px 0 0; }
+.more a { color: var(--accent); font-weight: 500; text-underline-offset: 4px; }
+
+/* CV + buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px;
+  font: 600 0.95rem var(--font-body); text-decoration: none; cursor: pointer;
+  border: 1px solid var(--line); color: var(--fg); background: var(--surface);
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.07); }
+.cv { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; }
+.doc {
+  flex: none; width: 52px; height: 64px; border-radius: 8px; background: var(--accent-soft); color: var(--accent);
+  display: grid; place-items: center;
+}
+.cv .info { flex: 1; min-width: 180px; }
+.cv h3 { font: 700 1.15rem var(--font-display); margin: 0; }
+.cv .file { margin: 2px 0 0; font: 400 0.8rem var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+
+/* Contact */
+.rows { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.rows li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.rows .k { width: 96px; font: 500 0.76rem var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.rows a, .rows .val { overflow-wrap: anywhere; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.copy {
+  font: 500 0.76rem var(--font-mono); padding: 3px 11px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg-soft); cursor: pointer;
+}
+.copy:hover { border-color: var(--accent); }
+
+footer .wrap { padding-block: 0 24px; font: 400 0.8rem var(--font-mono); color: var(--muted); text-align: center; }
+
+/* Dock */
+.dock {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100vw - 24px); z-index: 20;
+  display: flex; align-items: center; gap: 2px; padding: 6px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow);
+}
+.dock a, .dock button {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  border: 0; background: transparent; color: var(--fg-soft); cursor: pointer;
+  font: 500 0.78rem var(--font-mono); transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.dock a:hover, .dock button:hover { background: var(--accent-soft); color: var(--accent); transform: translateY(-2px); }
+.dock svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.dock .sep { width: 1px; height: 24px; background: var(--line); margin-inline: 4px; }
+
+/* Scroll reveal: only active when the script marks <html class="js">, so the page stays fully visible without it. */
+.js .rv { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.js .rv.in { opacity: 1; transform: none; filter: none; }
+
+@media (max-width: 520px) {
+  main { padding-top: 36px; }
+  .hero { flex-direction: row; align-items: flex-start; }
+  .tagline { font-size: 1.02rem; }
+  .dock a, .dock button { width: 37px; height: 37px; }
+  .dock svg { width: 19px; height: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade { animation: none; }
+  .project, .dock a, .dock button { transition: none; }
+}
+</style>
+</head>
+<body>
+<main id="top">
+  <div class="wrap">
+    <header class="hero">
+      <div class="text">
+        <h1 class="fade" style="--i:0"><span data-i18n="hi">Hi, I'm</span> <span class="mark">Yağmur</span></h1>
+        <p class="tagline fade" style="--i:1" data-i18n="tagline">Management Information Systems student. I build real products with AI, data and software.</p>
+        <div class="meta fade" style="--i:2">
+          <span class="pill" data-i18n="pill_uni">Bilecik Şeyh Edebali University</span>
+          <span class="pill" data-i18n="pill_year">4th year</span>
+        </div>
+      </div>
+      <div class="avatar-wrap fade" style="--i:1">
+        <img class="avatar" src="profil.jpg" width="560" height="560" alt="Photo of Yağmur Pehlivan" fetchpriority="high">
+      </div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <section id="about" class="about">
+      <span class="chip" data-i18n="chip_about">About</span>
+      <h2 data-i18n="h_about">A little about me</h2>
+      <p data-i18n="about">I am a student of Management Information Systems with a strong interest in technology and software development. I keep improving myself in artificial intelligence, data science and software development, and I care about turning what I learn into real projects. I work with technologies such as Python, R, SQL and JavaScript, and I carry out work on AI models and data analysis. I am open to learning new technologies, solving problems and working in teams. My goal is to bring technology and the business world together to build innovative and useful digital solutions.</p>
+    </section>
+
+    <section id="experience">
+      <span class="chip" data-i18n="chip_exp">Experience</span>
+      <h2 data-i18n="h_exp">My journey</h2>
+      <ol class="tl">
+        <li class="tl-item">
+          <div class="badge">B</div>
+          <div>
+            <div class="tl-head"><h3>Bien Seramik</h3><span class="when" data-i18n="x1_when">Aug 2026 – Sep 2026</span></div>
+            <p class="role" data-i18n="x1_role">IT Intern</p>
+            <ul>
+              <li data-i18n="x1_a">Gained hands-on experience with CANIAS ERP, supporting enterprise business processes and information flows.</li>
+              <li data-i18n="x1_b">Contributed to developing and improving the QUA Granite corporate website.</li>
+              <li data-i18n="x1_c">Helped with IT operations, technical troubleshooting and end-user support.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="badge b2">A</div>
+          <div>
+            <div class="tl-head"><h3>ARİZİ</h3><span class="when" data-i18n="x2_when">2025 – Present</span></div>
+            <p class="role" data-i18n="x2_role">Founder and Software Developer</p>
+            <ul>
+              <li data-i18n="x2_a">Building a digital beekeeping platform with hive management, maintenance tracking and location-based hive mapping.</li>
+              <li data-i18n="x2_b">Developing the mobile app with Flutter and Dart, and working on API integration and data management.</li>
+              <li data-i18n="x2_c">Designing an e-commerce component for digital honey sales.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="badge b3">G</div>
+          <div>
+            <div class="tl-head"><h3>GEZEN</h3><span class="when" data-i18n="x3_when">2025 – Present</span></div>
+            <p class="role" data-i18n="x3_role">Software Developer</p>
+            <ul>
+              <li data-i18n="x3_a">Building a digital travel platform for route discovery, trip planning and location-based recommendations.</li>
+              <li data-i18n="x3_b">Implementing interactive maps, ready-made routes, saved content, messaging and content sharing.</li>
+              <li data-i18n="x3_c">Using Firebase for authentication and data storage.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="education">
+      <span class="chip" data-i18n="chip_edu">Education</span>
+      <h2 data-i18n="h_edu">From school</h2>
+      <div class="card edu">
+        <div class="tl-head"><h3 data-i18n="e_uni">Bilecik Şeyh Edebali University</h3><span class="when" data-i18n="e_when">Sep 2023 – Present</span></div>
+        <p class="role" data-i18n="e_dep">Management Information Systems (Bachelor's)</p>
+        <div class="gpa"><b data-i18n="e_gpa">3.48 / 4.00</b><span data-i18n="e_gpa_k">GPA</span></div>
+        <p data-i18n="e_text">In my coursework I built neural network and machine learning models with Python (Pandas, NumPy, Scikit-learn) and R (tidyverse, ggplot2), and ran hypothesis tests and reliability analyses in SPSS. I am especially interested in relational database design, data science and AI engineering.</p>
+        <ul class="chips lilac">
+          <li data-i18n="e_c1">Database Management</li>
+          <li data-i18n="e_c2">Artificial Intelligence</li>
+          <li data-i18n="e_c3">Programming</li>
+          <li data-i18n="e_c4">System Analysis and Design</li>
+          <li data-i18n="e_c5">Software Development</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <span class="chip" data-i18n="chip_skills">Skills</span>
+      <h2 data-i18n="h_skills">My toolbox</h2>
+      <div class="skills">
+        <div class="group">
+          <h3 data-i18n="g_prog">Programming</h3>
+          <ul class="chips"><li>Python</li><li>R</li><li>JavaScript</li><li>SQL</li><li>Dart</li></ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_ai">Artificial intelligence</h3>
+          <ul class="chips lilac">
+            <li data-i18n="s_nn">Neural networks</li>
+            <li data-i18n="s_dl">Deep learning</li>
+            <li data-i18n="s_ml">Machine learning</li>
+            <li data-i18n="s_local">Local AI models</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_data">Data science</h3>
+          <ul class="chips mint">
+            <li data-i18n="s_analysis">Data analysis</li>
+            <li data-i18n="s_valid">Data validation</li>
+            <li>SPSS</li>
+            <li data-i18n="s_stats">Statistical analysis</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_db">Databases</h3>
+          <ul class="chips peach">
+            <li data-i18n="s_rel">Relational databases</li>
+            <li>SQL</li>
+            <li data-i18n="s_er">ER diagrams</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_sw">Software development</h3>
+          <ul class="chips sun">
+            <li>Flutter</li>
+            <li data-i18n="s_mobile">Mobile app development</li>
+            <li>Firebase</li>
+            <li data-i18n="s_api">API integration</li>
+            <li>Git</li>
+            <li>GitHub</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_sys">Systems and security</h3>
+          <ul class="chips mint">
+            <li>Linux</li>
+            <li data-i18n="s_net">Network configuration</li>
+            <li>Wazuh</li>
+            <li>n8n</li>
+            <li data-i18n="s_secauto">Security automation</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>ERP</h3>
+          <ul class="chips"><li>CANIAS ERP</li><li>AKINSOFT Wolvox ERP</li></ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_soft">Soft skills</h3>
+          <ul class="chips lilac">
+            <li data-i18n="s_problem">Problem solving</li>
+            <li data-i18n="s_research">Research</li>
+            <li data-i18n="s_analytic">Analytical thinking</li>
+            <li data-i18n="s_team">Teamwork</li>
+            <li data-i18n="s_learn">Continuous learning</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 data-i18n="g_lang">Languages</h3>
+          <ul class="chips peach">
+            <li data-i18n="l_tr">Turkish · Native</li>
+            <li data-i18n="l_en">English</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <span class="chip" data-i18n="chip_projects">Projects</span>
+      <h2 data-i18n="h_projects">Things I've built</h2>
+      <p class="sub" data-i18n="projects_sub">From mobile apps to data analysis and security automation, the things I make while learning.</p>
+      <div class="projects">
+        <article class="card project">
+          <div class="cover c1" aria-hidden="true">
+            <svg viewBox="0 0 300 112" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity=".85">
+              <path d="M60 20 l18 10 v20 l-18 10 l-18 -10 v-20 z"/><path d="M96 40 l18 10 v20 l-18 10 l-18 -10 v-20 z"/>
+              <path d="M132 20 l18 10 v20 l-18 10 l-18 -10 v-20 z"/><path d="M168 40 l18 10 v20 l-18 10 l-18 -10 v-20 z"/>
+              <path d="M204 20 l18 10 v20 l-18 10 l-18 -10 v-20 z"/><path d="M240 40 l18 10 v20 l-18 10 l-18 -10 v-20 z"/>
+              <path d="M78 76 l18 10 v20 M150 76 l18 10 v20 M222 76 l18 10 v20" opacity=".6"/>
+              <circle cx="132" cy="40" r="5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="p-body">
+            <div class="kind"><span data-i18n="k_mobile">Mobile app</span><span class="status" data-i18n="k_ongoing">In progress</span></div>
+            <h3 data-i18n="p1_title">ARİZİ: Digital Beekeeping Platform</h3>
+            <p data-i18n="p1_desc">A Flutter-based mobile app that lets beekeepers track their hives on a map, manage beekeeping work digitally and showcase their honey products.</p>
+            <ul class="tags"><li>Flutter</li><li>Dart</li><li data-i18n="t_map">Map</li><li>API</li></ul>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="cover c2" aria-hidden="true">
+            <svg viewBox="0 0 300 112" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".85">
+              <path d="M24 88 C70 20 110 100 150 54 S230 20 276 66" stroke-dasharray="3 8"/>
+              <circle cx="24" cy="88" r="6" fill="currentColor"/>
+              <path d="M276 66 c0 -14 -12 -22 -12 -34 a12 12 0 0 1 24 0 c0 12 -12 20 -12 34 z" fill="currentColor" stroke="none"/>
+              <circle cx="276" cy="32" r="4" fill="var(--blue-bg)" stroke="none"/>
+              <circle cx="150" cy="54" r="5"/>
+            </svg>
+          </div>
+          <div class="p-body">
+            <div class="kind"><span data-i18n="k_mobile">Mobile app</span><span class="status" data-i18n="k_ongoing">In progress</span></div>
+            <h3 data-i18n="p2_title">GEZEN: Travel and Discovery App</h3>
+            <p data-i18n="p2_desc">A mobile app that helps users discover new places, build travel routes and keep their travel memories in one digital place.</p>
+            <ul class="tags"><li>Firebase</li><li data-i18n="t_map">Map</li><li data-i18n="t_routes">Routes</li></ul>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="cover c3" aria-hidden="true">
+            <svg viewBox="0 0 300 112" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="1.8" opacity=".85">
+              <g opacity=".5"><path d="M60 30 L130 20 M60 30 L130 56 M60 30 L130 92 M60 82 L130 20 M60 82 L130 56 M60 82 L130 92"/>
+              <path d="M130 20 L200 38 M130 56 L200 38 M130 92 L200 38 M130 20 L200 76 M130 56 L200 76 M130 92 L200 76"/>
+              <path d="M200 38 L250 56 M200 76 L250 56"/></g>
+              <g fill="currentColor"><circle cx="60" cy="30" r="6"/><circle cx="60" cy="82" r="6"/>
+              <circle cx="130" cy="20" r="6"/><circle cx="130" cy="56" r="6"/><circle cx="130" cy="92" r="6"/>
+              <circle cx="200" cy="38" r="6"/><circle cx="200" cy="76" r="6"/><circle cx="250" cy="56" r="8"/></g>
+            </svg>
+          </div>
+          <div class="p-body">
+            <div class="kind"><span data-i18n="k_dataai">Data and AI</span></div>
+            <h3 data-i18n="p3_title">AI and Data Analysis Work</h3>
+            <p data-i18n="p3_desc">Work on data analysis, neural networks and deep learning models using R and Python.</p>
+            <ul class="tags"><li>Python</li><li>R</li><li data-i18n="t_dl">Deep learning</li></ul>
+          </div>
+        </article>
+        <article class="card project">
+          <div class="cover c4" aria-hidden="true">
+            <svg viewBox="0 0 300 112" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+              <path d="M150 14 L186 28 V58 C186 78 170 92 150 100 C130 92 114 78 114 58 V28 Z"/>
+              <path d="M134 56 L146 68 L168 44"/>
+              <path d="M40 56 H96 M88 48 L96 56 L88 64" opacity=".6"/>
+              <path d="M260 56 H204 M212 48 L204 56 L212 64" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="p-body">
+            <div class="kind"><span data-i18n="k_security">Security</span></div>
+            <h3 data-i18n="p4_title">Security Incident Automation</h3>
+            <div class="flow" role="img" aria-label="Wazuh, n8n, DFIR-IRIS">
+              <span class="node">Wazuh</span><span class="arrow" aria-hidden="true">→</span>
+              <span class="node">n8n</span><span class="arrow" aria-hidden="true">→</span>
+              <span class="node">DFIR-IRIS</span>
+            </div>
+            <p data-i18n="p4_desc">Automating the processing of security alerts, the creation of incident records and AI-assisted analysis using Wazuh, n8n and DFIR-IRIS.</p>
+            <ul class="tags"><li>Wazuh</li><li>n8n</li><li data-i18n="t_ai">AI</li></ul>
+          </div>
+        </article>
+      </div>
+      <p class="more"><a href="https://github.com/Ygm-pehlivan" target="_blank" rel="noopener" data-i18n="more">Code and other work on GitHub</a></p>
+    </section>
+
+    <section id="cv">
+      <span class="chip" data-i18n="chip_cv">CV</span>
+      <h2 data-i18n="h_cv">My resume</h2>
+      <div class="card cv">
+        <div class="doc" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="info">
+          <h3 data-i18n="cv_title">CV (PDF)</h3>
+          <p class="file" data-i18n="cv_file">English · 2 pages</p>
+        </div>
+        <a class="btn primary" href="Yagmur_Pehlivan_CV2026.pdf" target="_blank" rel="noopener" data-i18n="cv_open">Open CV</a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <span class="chip" data-i18n="chip_contact">Contact</span>
+      <h2 data-i18n="h_contact">Want to say hi?</h2>
+      <p class="sub" data-i18n="c_text">Get in touch for internships, collaborations or project ideas.</p>
+      <ul class="rows">
+        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/yagmur-pehlivan" target="_blank" rel="noopener">linkedin.com/in/yagmur-pehlivan</a></li>
+        <li><span class="k" data-i18n="c_email">Email</span><span class="val" id="email-text">yagmurpehlvann@icloud.com</span><button class="copy" type="button" id="copy-email" data-i18n="copy">Copy</button></li>
+        <li><span class="k">GitHub</span><a href="https://github.com/Ygm-pehlivan" target="_blank" rel="noopener">github.com/Ygm-pehlivan</a></li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap">© 2026 Yağmur Pehlivan</div></footer>
+
+<nav class="dock" aria-label="Quick navigation">
+  <a href="#top" id="d-home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+  <a href="#projects" id="d-projects"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></a>
+  <a href="#cv" id="d-cv"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></a>
+  <a href="#contact" id="d-contact"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+  <span class="sep" aria-hidden="true"></span>
+  <a href="https://github.com/Ygm-pehlivan" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+  <a href="https://www.linkedin.com/in/yagmur-pehlivan" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+  <span class="sep" aria-hidden="true"></span>
+  <button type="button" id="theme-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+  <button type="button" id="lang-btn">TR</button>
+</nav>
+
+<script>
+(function () {
+  var TR = {
+    hi: "Merhaba, ben",
+    tagline: "Yönetim Bilişim Sistemleri öğrencisi. Yapay zekâ, veri ve yazılımla gerçek ürünler geliştiriyorum.",
+    pill_uni: "Bilecik Şeyh Edebali Üniversitesi",
+    pill_year: "4. sınıf",
+    chip_about: "Hakkımda",
+    h_about: "Biraz kendimden",
+    about: "Yönetim Bilişim Sistemleri alanında eğitim alan, teknoloji ve yazılım geliştirme konularına ilgi duyan bir öğrenciyim. Yapay zekâ, veri bilimi ve yazılım geliştirme alanlarında kendimi geliştiriyor; öğrendiklerimi gerçek projelere dönüştürmeye önem veriyorum. Python, R, SQL ve JavaScript gibi teknolojilerle çalışıyor, yapay zekâ modelleri ve veri analizi üzerine çalışmalar yapıyorum. Yeni teknolojiler öğrenmeye, problem çözmeye ve ekip çalışmalarına açığım. Hedefim, teknoloji ve iş dünyasını bir araya getirerek yenilikçi ve faydalı dijital çözümler geliştirmek.",
+    chip_exp: "Deneyim",
+    h_exp: "Yolculuğum",
+    x1_when: "Ağu 2026 – Eyl 2026",
+    x1_role: "Bilgi Teknolojileri Stajyeri",
+    x1_a: "CANIAS ERP ile kurumsal iş süreçlerini ve bilgi akışlarını destekleyerek uygulamalı deneyim kazandım.",
+    x1_b: "QUA Granite kurumsal web sitesinin geliştirilmesine ve iyileştirilmesine katkıda bulundum.",
+    x1_c: "BT operasyonları, teknik sorun giderme ve son kullanıcı desteğinde görev aldım.",
+    x2_when: "2025 – Devam ediyor",
+    x2_role: "Kurucu ve Yazılım Geliştirici",
+    x2_a: "Kovan takibi, bakım kayıtları ve konuma dayalı kovan haritalama özellikleriyle dijital arıcılık platformunu geliştiriyorum.",
+    x2_b: "Mobil uygulamayı Flutter ve Dart ile yazıyorum; API entegrasyonu ve veri yönetimi üzerinde çalışıyorum.",
+    x2_c: "Bal satışı için bir e-ticaret bileşeni tasarlıyorum.",
+    x3_when: "2025 – Devam ediyor",
+    x3_role: "Yazılım Geliştirici",
+    x3_a: "Rota keşfi, gezi planlama ve konuma dayalı öneriler sunan dijital seyahat platformunu geliştiriyorum.",
+    x3_b: "Etkileşimli haritalar, hazır rotalar, kayıtlı içerikler, mesajlaşma ve içerik paylaşımı özelliklerini yazıyorum.",
+    x3_c: "Kimlik doğrulama ve veri depolama için Firebase kullanıyorum.",
+    chip_edu: "Eğitim",
+    h_edu: "Okuldan",
+    e_uni: "Bilecik Şeyh Edebali Üniversitesi",
+    e_when: "Eyl 2023 – Devam ediyor",
+    e_dep: "Yönetim Bilişim Sistemleri (Lisans)",
+    e_gpa: "3,48 / 4,00",
+    e_gpa_k: "Not ortalaması",
+    e_text: "Okul projelerinde Python (Pandas, NumPy, Scikit-learn) ve R (tidyverse, ggplot2) ile yapay sinir ağı ve makine öğrenmesi modelleri geliştirdim; SPSS ile hipotez testleri ve güvenilirlik analizleri yaptım. İlgi alanım ilişkisel veritabanı tasarımı, veri bilimi ve yapay zekâ mühendisliği.",
+    e_c1: "Veritabanı Yönetimi",
+    e_c2: "Yapay Zekâ",
+    e_c3: "Programlama",
+    e_c4: "Sistem Analizi ve Tasarımı",
+    e_c5: "Yazılım Geliştirme",
+    chip_skills: "Yetenekler",
+    h_skills: "Araç çantam",
+    g_prog: "Programlama",
+    g_ai: "Yapay zekâ",
+    s_nn: "Yapay sinir ağları",
+    s_dl: "Derin öğrenme",
+    s_ml: "Makine öğrenmesi",
+    s_local: "Yerel yapay zekâ modelleri",
+    g_data: "Veri bilimi",
+    s_analysis: "Veri analizi",
+    s_valid: "Veri doğrulama",
+    s_stats: "İstatistiksel analiz",
+    g_db: "Veritabanı",
+    s_rel: "İlişkisel veritabanları",
+    s_er: "ER diyagramları",
+    g_sw: "Yazılım geliştirme",
+    s_mobile: "Mobil uygulama geliştirme",
+    s_api: "API entegrasyonu",
+    g_sys: "Sistem ve güvenlik",
+    s_net: "Ağ yapılandırması",
+    s_secauto: "Güvenlik otomasyonu",
+    g_soft: "Kişisel yetenekler",
+    s_problem: "Problem çözme",
+    s_research: "Araştırma",
+    s_analytic: "Analitik düşünme",
+    s_team: "Takım çalışması",
+    s_learn: "Sürekli öğrenme",
+    g_lang: "Diller",
+    l_tr: "Türkçe · Ana dil",
+    l_en: "İngilizce",
+    chip_projects: "Projeler",
+    h_projects: "Yaptığım şeyler",
+    projects_sub: "Mobil uygulamalardan veri analizine ve güvenlik otomasyonuna kadar, öğrenirken ürettiklerim.",
+    k_mobile: "Mobil uygulama",
+    k_ongoing: "Devam ediyor",
+    p1_title: "ARİZİ: Dijital Arıcılık Platformu",
+    p1_desc: "Arıcıların kovanlarını harita üzerinden takip etmelerini, arıcılık süreçlerini dijital ortamda yönetmelerini ve bal ürünlerini sergilemelerini amaçlayan Flutter tabanlı mobil uygulama.",
+    t_map: "Harita",
+    p2_title: "GEZEN: Seyahat ve Keşif Uygulaması",
+    p2_desc: "Kullanıcıların yeni yerler keşfetmesini, seyahat rotaları oluşturmasını ve seyahat anılarını dijital ortamda saklamasını amaçlayan mobil uygulama.",
+    t_routes: "Rotalar",
+    k_dataai: "Veri ve YZ",
+    p3_title: "Yapay Zekâ ve Veri Analizi Çalışmaları",
+    p3_desc: "R ve Python kullanarak veri analizi, yapay sinir ağları ve derin öğrenme modelleri üzerinde çalışmalar.",
+    t_dl: "Derin öğrenme",
+    k_security: "Güvenlik",
+    p4_title: "Güvenlik Olayları Otomasyonu",
+    p4_desc: "Wazuh, n8n ve DFIR-IRIS kullanarak güvenlik uyarılarının işlenmesi, olay kayıtlarının oluşturulması ve yapay zekâ destekli analiz süreçlerinin otomasyonu.",
+    t_ai: "Yapay zekâ",
+    more: "Kod ve diğer çalışmalar GitHub'da",
+    chip_cv: "CV",
+    h_cv: "Özgeçmişim",
+    cv_title: "CV (PDF)",
+    cv_file: "İngilizce · 2 sayfa",
+    cv_open: "CV'yi aç",
+    chip_contact: "İletişim",
+    h_contact: "Merhaba demek ister misiniz?",
+    c_text: "Staj, iş birliği ya da proje fikirleri için benimle iletişime geçebilirsiniz.",
+    c_email: "E-posta",
+    copy: "Kopyala"
+  };
+  var ARIA = {
+    "d-home": ["Ana sayfa", "Home"], "d-projects": ["Projeler", "Projects"],
+    "d-cv": ["CV", "CV"], "d-contact": ["İletişim", "Contact"],
+    "theme-btn": ["Temayı değiştir", "Switch theme"], "lang-btn": ["English'e geç", "Türkçe'ye geç"]
+  };
+
+  var root = document.documentElement;
+  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
+  nodes.forEach(function (el) { el.setAttribute("data-en", el.textContent); });
+  var langBtn = document.getElementById("lang-btn");
+  var lang = "en";
+
+  function setLang(l) {
+    lang = l;
+    nodes.forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      el.textContent = l === "tr" && TR[k] != null ? TR[k] : el.getAttribute("data-en");
+    });
+    Object.keys(ARIA).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.setAttribute("aria-label", ARIA[id][l === "en" ? 1 : 0]);
+    });
+    langBtn.textContent = l === "en" ? "TR" : "EN";
+    root.lang = l;
+    var av = document.querySelector(".avatar");
+    if (av) av.setAttribute("alt", l === "en" ? "Photo of Yağmur Pehlivan" : "Yağmur Pehlivan'ın fotoğrafı");
+    try { localStorage.setItem("lang", l); } catch (e) {}
+  }
+  langBtn.addEventListener("click", function () { setLang(lang === "tr" ? "en" : "tr"); });
+
+  function currentTheme() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.getElementById("theme-btn").addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+
+  var copyBtn = document.getElementById("copy-email");
+  var emailEl = document.getElementById("email-text");
+  copyBtn.addEventListener("click", function () {
+    var done = function () {
+      copyBtn.textContent = lang === "en" ? "Copied" : "Kopyalandı";
+      setTimeout(function () { copyBtn.textContent = lang === "tr" ? TR.copy : copyBtn.getAttribute("data-en"); }, 1600);
+    };
+    var select = function () {
+      var r = document.createRange(); r.selectNodeContents(emailEl);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    };
+    try { navigator.clipboard.writeText(emailEl.textContent).then(done, select); } catch (e) { select(); }
+  });
+
+  // Scroll reveal
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!("IntersectionObserver" in window) || reduce) return;
+    var items = Array.prototype.slice.call(document.querySelectorAll(
+      "#about p, main section .chip, main section h2, main section .sub, .tl-item, .edu, .group, .project, .more, .card.cv, .rows li"));
+    items.forEach(function (el) { el.classList.add("rv"); });
+    root.classList.add("js");
+    function show(el, n) {
+      el.style.transitionDelay = Math.min(n, 5) * 90 + "ms";
+      el.classList.add("in");
+      setTimeout(function () { el.classList.remove("rv", "in"); el.style.transitionDelay = ""; }, 1300);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      var n = 0;
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        show(en.target, n++);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    items.forEach(function (el) { io.observe(el); });
+    // Safety net: if observer callbacks never arrive, reveal whatever is on screen.
+    setTimeout(function () {
+      items.forEach(function (el) {
+        if (el.classList.contains("rv") && !el.classList.contains("in") && el.getBoundingClientRect().top < window.innerHeight) {
+          io.unobserve(el); show(el, 0);
+        }
+      });
+    }, 2500);
+  })();
+
+  var savedTheme = null, savedLang = null;
+  try { savedTheme = localStorage.getItem("theme"); savedLang = localStorage.getItem("lang"); } catch (e) {}
+  if (savedTheme === "dark" || savedTheme === "light") root.setAttribute("data-theme", savedTheme);
+  setLang(savedLang === "tr" ? "tr" : "en");
+})();
+</script>
+</body>
+</html>
